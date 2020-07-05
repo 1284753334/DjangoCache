@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student_page</title>
+    {#    引入css#}
+    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
+    {#    引入 js#}
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.11.1-beta1/jquery.js"></script>
+
+    {#     引入bootstrap#}
+    <script type="text/javascript"
+            src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+
+
+</head>
+<body>
+<ul>Student-list</ul>
+<ul>
+    {% for sts in page_object.object_list %}
+
+        <li>姓名：{{ sts.s_name }} 年龄：{{ sts.s_age }}</li>
+    {% endfor %}
+
+
+</ul>
+<nav aria-label="Page navigation">
+    <ul class="pagination">
+
+        {% if page_object.has_previous %}
+            <li>
+                <a href="{% url 'app:addstspage' %}?page={{ page_object.previous_page_number }}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="disabled">
+                <a href="disabled" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        {% endif %}
+
+
+        {% for page_index in page_range %}
+            {% ifequal page_index page_object.number %}
+                <li class="active"><a href="{% url 'app:addstspage' %}?page={{ page_index }}">{{ page_index }}</a></li>
+            {% else %}
+                <li><a href="{% url 'app:addstspage' %}?page={{ page_index }}">{{ page_index }}</a></li>
+            {% endifequal %}
+
+        {% endfor %}
+
+
+        {% if page_object.has_next %}
+            <li>
+                <a href="{% url 'app:addstspage' %}?page={{ page_object.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% else %}
+            <li class="disabled">
+                <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        {% endif %}
+
+
+    </ul>
+</nav>
+
+{#{% if data %}#}
+{#			<ul id="pages" class="pagination pagination-sm pagination-xs">#}
+{#				{% if data.first %}#}
+{#					<li><a href="?page=1">1</a></li>#}
+{#				{% endif %}#}
+{#				{% if data.left %}#}
+{#					{% if data.left_has_more %}#}
+{#						<li><span>...</span></li>#}
+{#					{% endif %}#}
+{#					{% for i in data.left %}#}
+{#						<li><a href="?page={{i}}">{{i}}</a></li>#}
+{#					{% endfor %}#}
+{#				{% endif %}#}
+{#				<li class="active"><a href="?page={{data.page}}">{{data.page}}</a></li>#}
+{#				{% if data.right %}#}
+{#					{% for i in data.right %}#}
+{#						<li><a href="?page={{i}}">{{i}}</a></li>#}
+{#					{% endfor %}#}
+{#					{% if data.right_has_more %}#}
+{#						<li><span>...</span></li>#}
+{#					{% endif %}#}
+{#				{% endif %}#}
+{#				{% if data.last %}#}
+{#					<li><a href="?page={{data.total_pages}}">{{data.total_pages}}</a></li>#}
+{#				{% endif %}#}
+{#			</ul>#}
+{#{% endif %}#}
+
+
+</body>
+</html>

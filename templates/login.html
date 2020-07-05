@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>login</title>
+    {% load static %}
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.11.1-beta1/jquery.js"></script>
+
+{#    <script type="text/javascript" src="{% static 'js/login.js' %}"></script>#}
+     <script type="text/javascript" src="/static/js/login.js"></script>
+
+
+</head>
+<body>
+<form action="{% url 'app:login' %}" method="post">
+    <span>用户名：</span><input type="text"name = 'username' placeholder="请输入用户名">
+    <br>
+<span>验证码</span><input type="text" name="verify_code" placeholder="请输入图中的验证码">
+    <hr>
+{#    <img src="{% url 'app:getcode' %}" >#}
+   <img src="#" >
+    <br>
+{#    <a class="f5" href="#">刷新</a>#}
+    <br>
+    <button>提交</button>
+</form>
+</body>
+</html>
